@@ -1,3 +1,4 @@
+sendConnectedMessage();
 appendSwitchAccountModal();
 
 const includeFragmentMenuElement = document.querySelector("include-fragment[src$='/menu']")!;
@@ -14,7 +15,14 @@ includeFragmentMenuElement.addEventListener("load", () => {
     switchAccountModalElement.setAttribute("open", "");
   };
 });
-
+chrome.runtime.onMessage.addListener((message) => {
+  if (message.type === "getAllCookies") {
+    console.log(message.data);
+  }
+});
+function sendConnectedMessage() {
+  chrome.runtime.sendMessage("Connected!");
+}
 function appendSwitchAccountModal() {
   const bodyElement = document.querySelector("body")!;
 

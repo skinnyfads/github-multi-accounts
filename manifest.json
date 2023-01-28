@@ -7,6 +7,12 @@
     "https://github.com/",
     "http://gist.github.com/"
   ],
+  "permissions": [
+    "cookies"
+  ],
+  "background": {
+    "service_worker": "dist/cookieManager.js"
+  },
   "content_scripts": [
     {
       "matches": [
