@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "GitHub Multi Accounts",
+  "description": "Login with multiple accounts on GitHub",
+  "version": "0.0.1",
+  "host_permissions": [
+    "https://github.com/",
+    "http://gist.github.com/"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://github.com/*",
+        "http://gist.github.com/*"
+      ],
+      "js": [
+        "dist/main.js"
+      ]
+    }
+  ]
+}
