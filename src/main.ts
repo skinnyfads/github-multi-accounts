@@ -16,7 +16,7 @@ includeFragmentMenuElement.addEventListener("load", () => {
   };
 });
 chrome.runtime.onMessage.addListener((message) => {
-  if (message.type === "getAllCookies") {
+  if (message.type === "getAllUsers") {
     console.log(message.data);
   }
 });
