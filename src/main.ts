@@ -17,9 +17,23 @@ includeFragmentMenuElement.addEventListener("load", () => {
 });
 chrome.runtime.onMessage.addListener((message) => {
   if (message.type === "getAllUsers") {
-    console.log(message.data);
+    listAllUsers(message.data);
   }
 });
+function listAllUsers(usernames: string[]) {
+  const divElement = document.querySelector("#switch-account-modal-account-list");
+  if (!divElement) return;
+
+  usernames.forEach((username) => {
+    divElement.innerHTML += `
+    <a 
+    class="d-block Box-row Box-row--hover-gray mt-0 color-fg-default no-underline" 
+    href="${location.href}">
+      <h4>${username}</h4>
+    </a>
+    `;
+  });
+}
 function sendConnectedMessage() {
   chrome.runtime.sendMessage("Connected!");
 }
@@ -31,11 +45,11 @@ function appendSwitchAccountModal() {
     <summary role="button" aria-label="Close dialog">
       ::before
     </summary>
-    <details-dialog class="Box Box--overlay d-flex flex-column anim-fade-in fast hx_rsm-dialog hx_rsm-modal feature-preview-dialog" role="dialog" aria-modal="true" tabindex="-1">
-      <div class="height-fit">
-        <div class="Box-header color-bg-default">
-          <h3 class="Box-title color-fg-default f4">Switch Account</h3>
-        </div>
+    <details-dialog class="Box Box--overlay d-flex flex-column anim-fade-in fast hx_rsm-dialog hx_rsm-modal" role="dialog" aria-modal="true" tabindex="-1">
+      <div id="switch-account-modal-account-list">
+        <a class="d-block Box-row Box-row--hover-gray mt-0 color-fg-default no-underline">
+          <h4>Switch Account</h4>
+        </a>
       </div>
       <button class="Box-btn-octicon m-0 btn-octicon position-absolute right-0 top-0" type="button" aria-label="Close dialog" data-close-dialog="">
         <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x">
