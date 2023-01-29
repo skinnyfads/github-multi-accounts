@@ -35,7 +35,15 @@ function listAllUsers(usernames: string[]) {
     </a>
     `;
   });
-  const usernameElements = document.querySelectorAll("#switch-account-modal-account-list a[href]");
+  divElement.innerHTML += `
+  <a 
+  class="d-block Box-row Box-row--hover-gray mt-0 color-fg-default no-underline" 
+  href="/login"
+  >
+    <h5>+ Add</h5>
+  </a>
+  `;
+  const usernameElements = divElement.querySelectorAll("a[href]:not([href$='/login'])");
 
   usernameElements.forEach((usernameElement) => {
     usernameElement.addEventListener("click", () => {
