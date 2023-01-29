@@ -28,10 +28,19 @@ function listAllUsers(usernames: string[]) {
     divElement.innerHTML += `
     <a 
     class="d-block Box-row Box-row--hover-gray mt-0 color-fg-default no-underline" 
-    href="${location.href}">
+    href="${location.href}"
+    data-account-username="${username}"
+    >
       <h4>${username}</h4>
     </a>
     `;
+  });
+  const usernameElements = document.querySelectorAll("#switch-account-modal-account-list a[href]");
+
+  usernameElements.forEach((usernameElement) => {
+    usernameElement.addEventListener("click", () => {
+      console.log(usernameElement.getAttribute("data-account-username"));
+    });
   });
 }
 function sendConnectedMessage() {
