@@ -26,8 +26,7 @@ chrome.runtime.onMessage.addListener(async (message) => {
       const usernames = cookies.filter((cookie: ICookie) => cookie.value === "dotcom_user");
       replyMessage.data = usernames.map((username: ICookie) => username.value);
     }
-    chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
-      await chrome.tabs.sendMessage(tabs[0].id!, replyMessage);
-    });
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    await chrome.tabs.sendMessage(tab.id!, replyMessage);
   }
 });
