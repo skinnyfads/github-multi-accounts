@@ -5,7 +5,7 @@ interface IReplyMessage {
 type ICookie = chrome.cookies.Cookie;
 
 chrome.runtime.onMessage.addListener(async (message) => {
-  if (message === "Connected!") {
+  if (message.text === "connected") {
     const replyMessage: IReplyMessage = { type: "getAllUsers", data: undefined };
     const cookies = await chrome.cookies.getAll({ url: "https://github.com" });
     const multiUserCookies = cookies.find((cookie) => cookie.name === "gh_multi_account_users");

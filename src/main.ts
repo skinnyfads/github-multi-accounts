@@ -52,7 +52,7 @@ function listAllUsers(usernames: string[]) {
   });
 }
 function sendConnectedMessage() {
-  chrome.runtime.sendMessage("Connected!");
+  chrome.runtime.sendMessage({ text: "connected" });
 }
 function appendSwitchAccountModal() {
   const bodyElement = document.querySelector("body")!;
